@@ -1,0 +1,17 @@
+.footer-background {
+  background-color: black;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  color: white;
+}
+
+@media screen and (max-width: 512px) {
+  .footer {
+    justify-content: center;
+  }
+}

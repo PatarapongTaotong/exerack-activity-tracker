@@ -1,0 +1,26 @@
+body {
+  font-family: "Work Sans", sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0px auto;
+  padding: 0px 24px;
+}
+
+.section {
+  margin-bottom: 64px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+@media screen and (max-width: 512px) {
+  .container {
+    padding: 0px 12px;
+  }
+}

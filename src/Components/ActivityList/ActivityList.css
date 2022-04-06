@@ -1,0 +1,18 @@
+.activity-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 16px;
+  column-gap: 32px;
+}
+
+@media screen and (max-width: 768px) {
+  .activity-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 512px) {
+  .activity-list {
+    grid-template-columns: 1fr;
+  }
+}

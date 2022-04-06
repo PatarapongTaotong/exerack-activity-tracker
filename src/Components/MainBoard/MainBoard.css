@@ -1,0 +1,49 @@
+.mainboard-text {
+  font-size: 64px;
+  font-weight: 600;
+  padding-top: 128px;
+  color: white;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 512px) {
+  .mainboard-text {
+    font-size: 48px;
+  }
+}
+
+.home {
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0)
+    ),
+    url("../../../public/Images/home-mainboard-image.jpg");
+  background-size: cover;
+  background-position: center center;
+  height: 720px;
+}
+
+.activities {
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0)
+    ),
+    url("../../../public/Images/activities-mainboard-image.jpg");
+  background-size: cover;
+  background-position: top center;
+  height: 720px;
+}
+
+.profile {
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0)
+    ),
+    url("../../../public/Images/profile-mainboard-image.jpg");
+  background-size: cover;
+  background-position: top center;
+  height: 720px;
+}

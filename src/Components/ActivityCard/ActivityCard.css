@@ -1,0 +1,182 @@
+.card-pattern {
+  width: 100%;
+  height: 450px;
+  border-radius: 18px;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+}
+
+.Run {
+  background-image: url("../../../public/Images/run.jpg");
+  background-position: center center;
+}
+
+.Run:hover {
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.9),
+      rgba(0, 0, 0, 0.1)
+    ),
+    url("../../../public/Images/run.jpg");
+}
+
+.Bicycle {
+  background-image: url("../../../public/Images/bicycle.jpg");
+  background-position: center center;
+}
+
+.Bicycle:hover {
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.9),
+      rgba(0, 0, 0, 0.1)
+    ),
+    url("../../../public/Images/bicycle.jpg");
+}
+
+.Ride {
+  background-image: url("../../../public/Images/ride.jpg");
+  background-position: center center;
+}
+
+.Ride:hover {
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.9),
+      rgba(0, 0, 0, 0.1)
+    ),
+    url("../../../public/Images/ride.jpg");
+}
+
+.Swim {
+  background-image: url("../../../public/Images/swim.jpg");
+  background-position: center center;
+}
+
+.Swim:hover {
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.9),
+      rgba(0, 0, 0, 0.1)
+    ),
+    url("../../../public/Images/swim.jpg");
+}
+
+.Walk {
+  background-image: url("../../../public/Images/walk.jpg");
+  background-position: center center;
+}
+
+.Walk:hover {
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.9),
+      rgba(0, 0, 0, 0.1)
+    ),
+    url("../../../public/Images/walk.jpg");
+}
+
+.Hike {
+  background-image: url("../../../public/Images/hike.jpg");
+  background-position: center center;
+}
+
+.Hike:hover {
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.9),
+      rgba(0, 0, 0, 0.1)
+    ),
+    url("../../../public/Images/hike.jpg");
+}
+
+.Weight-training {
+  background-image: url("../../../public/Images/weight-training.jpg");
+  background-position: center center;
+}
+
+.Weight-training:hover {
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.9),
+      rgba(0, 0, 0, 0.1)
+    ),
+    url("../../../public/Images/weight-training.jpg");
+}
+
+.Boxing {
+  background-image: url("../../../public/Images/boxing.jpg");
+  background-position: center center;
+}
+
+.Boxing:hover {
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.9),
+      rgba(0, 0, 0, 0.1)
+    ),
+    url("../../../public/Images/boxing.jpg");
+}
+
+.Yoga {
+  background-image: url("../../../public/Images/yoga.jpg");
+  background-position: center center;
+}
+
+.Yoga:hover {
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.9),
+      rgba(0, 0, 0, 0.1)
+    ),
+    url("../../../public/Images/yoga.jpg");
+}
+
+.activity-card-title {
+  visibility: hidden;
+  font-size: 48px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.card-pattern:hover .activity-card-title {
+  visibility: visible;
+}
+
+.hover-elevate {
+  transition: box-shadow 0.1s ease-out 0s, transform 0.1s ease-out 0s;
+  cursor: pointer;
+}
+
+.hover-elevate:hover {
+  box-shadow: rgba(32, 32, 32, 0.05) 0px 16px 16px 0px,
+    rgba(42, 42, 42, 0.05) 0px 8px 8px 0px,
+    rgba(49, 49, 49, 0.05) 0px 4px 4px 0px,
+    rgba(45, 45, 45, 0.05) 0px 2px 2px 0px,
+    rgba(35, 35, 35, 0.05) 0px 64px 64px 0px,
+    rgba(49, 49, 49, 0.05) 0px 32px 32px 0px;
+  transform: translate(-10px, -10px);
+}
+
+.hover-elevate:active {
+  box-shadow: none;
+}
+
+@media screen and (max-width: 768px) {
+  .card-pattern {
+    height: 200px;
+  }
+
+  .Run {
+    background-position: 50% 85%;
+  }
+
+  .Swim {
+    background-position: 50% 70%;
+  }
+}

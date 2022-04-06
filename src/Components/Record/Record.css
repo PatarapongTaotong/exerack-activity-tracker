@@ -1,0 +1,63 @@
+.record {
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  font-size: 40px;
+}
+
+.record-information {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.record-information h3 {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 0.22rem;
+}
+
+.record-information p {
+  font-size: 20px;
+  font-size: 0.83rem;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.record-icon {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.record:hover {
+  cursor: pointer;
+  background-color: rgb(230, 230, 230);
+}
+
+.record:active {
+  background-color: rgb(238, 238, 238);
+}
+
+.hover-elevate {
+  transition: box-shadow 0.1s ease-out 0s, transform 0.1s ease-out 0s;
+  cursor: pointer;
+}
+
+.hover-elevate:hover {
+  box-shadow: rgba(32, 32, 32, 0.05) 0px 16px 16px 0px,
+    rgba(42, 42, 42, 0.05) 0px 8px 8px 0px,
+    rgba(49, 49, 49, 0.05) 0px 4px 4px 0px,
+    rgba(45, 45, 45, 0.05) 0px 2px 2px 0px,
+    rgba(35, 35, 35, 0.05) 0px 64px 64px 0px,
+    rgba(49, 49, 49, 0.05) 0px 32px 32px 0px;
+  transform: translate(-1px, -1px);
+}
+
+.hover-elevate:active {
+  box-shadow: none;
+}
