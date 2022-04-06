@@ -1,11 +1,13 @@
 import './AddActivityForm.css';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const AddActivityForm = ({closeForm, activityType}) => {
     const [activityName, setActivityName] = useState('');
     const [isNameOk, setIsNameOk] = useState(false);
     const [activityDescription, setActivityDescription] = useState('');
     const [isDescriptionOk, setIsDescriptionOk] = useState(false);
+    const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [isTimeOk, setIsTimeOk] = useState(false);
 
@@ -37,6 +39,10 @@ const AddActivityForm = ({closeForm, activityType}) => {
         }
     }, [activityDescription])
 
+    const onChangeDate = (e) => {
+        setDate(e.target.value);  
+    }
+
     const onChangeTime = (e) => {
         setTime(e.target.value);  
     }
@@ -53,9 +59,35 @@ const AddActivityForm = ({closeForm, activityType}) => {
         }
     }, [time])
 
+    const onSubmit = async () => {
+        try {
+            const instance = axios.create({
+                baseURL: 'http://localhost:3030',
+                timeout: 120000,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            const payload = {
+                userId: 'someMocckupId',
+                activityType,
+                activityName,
+                activityDescription,
+                date,
+                duration: time
+            }
+
+            const created = await instance.post('/activities', payload)
+
+            console.log({ created });
+        } catch (error) {
+            console.log({error});
+        }
+    }
+
     return (
         <div id="add-activity-form">
-            <form action="#" className="form-container">
+            <form action="#" className="form-container" onSubmit={onSubmit}>
                 <h3>Record Activity</h3>
                 
                 <label htmlFor="ac-type" className="label">Activity Type</label>
@@ -74,7 +106,7 @@ const AddActivityForm = ({closeForm, activityType}) => {
                 </div>
                 
                 <label htmlFor="ac-date" className="label">Date</label>
-                <input id="ac-date" name="ac-date" type="date" required />
+                <input id="ac-date" name="ac-date" type="date" value={date} onChange={onChangeDate} required />
 
                 <div>
                     <label htmlFor="ac-duration" className="label">Duration</label>
