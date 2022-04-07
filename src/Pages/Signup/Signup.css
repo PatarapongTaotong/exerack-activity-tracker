@@ -1,0 +1,92 @@
+.signup-container {
+    background-image: url("../../../public/Images/signup-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.signup-box {
+    height: 50vh;
+    width: 27%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-box h1 {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.signup-box h2 {
+    font-size: 48px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.signup-box input {
+    font-family: "Outfit", sans-serif;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px;
+    outline: none;
+    margin-top: 24px;
+}
+
+.signup-box .error {
+    border: 2px solid #f2796b;
+}
+
+.signup-box .error-text {
+    color: #f2796b;
+    width: 87.5%;
+    text-align: left;
+    margin-top: 1rem;
+}
+
+.signup-btn {
+    border: none;
+    border-radius: 0.5rem;
+    background: #f2796b;
+    color: #fff;
+    width: 100%;
+    padding: 1rem;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px;
+    cursor: pointer;
+    margin-top: 24px;
+}
+
+.signup-btn:hover {
+  background: #f46757;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1300px) {
+  .signup-box {
+    width: 35%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .signup-box {
+    width: 80%;
+    height: 80vh;
+  }
+}

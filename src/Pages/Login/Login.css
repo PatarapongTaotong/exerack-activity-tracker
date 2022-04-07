@@ -71,62 +71,62 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px;
     cursor: pointer;
     margin-top: 24px;
-  }
+}
 
-  .login-btn:hover {
-    background: #f46757;
-    cursor: pointer;
-  }
+.login-btn:hover {
+  background: #f46757;
+  cursor: pointer;
+}
 
-  .separator {
-    width: 75%;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #786f6f;
-    margin-top: 24px;
-  }
+.separator {
+  width: 75%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #786f6f;
+  margin-top: 24px;
+}
   
-  .separator::before,
-  .separator::after {
-    content: "";
-    flex: 1;
-    border-bottom: 1px solid #786f6f;
-  }
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #786f6f;
+}
   
-  .separator:not(:empty)::before {
-    margin-right: 0.5rem;
-  }
+.separator:not(:empty)::before {
+  margin-right: 0.5rem;
+}
   
-  .separator:not(:empty)::after {
-    margin-left: 0.5rem;
-  }
+.separator:not(:empty)::after {
+  margin-left: 0.5rem;
+}
 
-  .no-account {
-    color: #948888;
-    font-weight: 400;
-    margin-top: 24px;
-  }
+.no-account {
+  color: #948888;
+  font-weight: 400;
+  margin-top: 24px;
+}
   
-  .signup {
-    text-decoration: none;
-    color: black;
-  }
+.signup {
+  text-decoration: none;
+  color: black;
+}
 
-  .signup:hover {
-    cursor: pointer;
-    color: #f46757;
-  }
+.signup:hover {
+  cursor: pointer;
+  color: #f46757;
+}
 
-  @media screen and (max-width: 1300px) {
-    .login-box {
-      width: 35%;
-    }
+@media screen and (max-width: 1300px) {
+  .login-box {
+    width: 35%;
   }
+}
 
-  @media screen and (max-width: 768px) {
-    .login-box {
-      width: 80%;
-      height: 80vh;
-    }
+@media screen and (max-width: 768px) {
+  .login-box {
+    width: 80%;
+    height: 80vh;
   }
+}
