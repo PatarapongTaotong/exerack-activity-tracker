@@ -33,7 +33,6 @@ const Login = () => {
                     id='email' type='text' name='email' 
                     placeholder='Enter your email' 
                     value={email} 
-                    isInvalid={isInvalid}
                     onChange={e => setEmail(e.target.value)} />
                 {isInvalid && <div className='error-text'>Email is invalid</div>}
                 <input id='password' type='text' name='password' 

@@ -117,3 +117,16 @@
     cursor: pointer;
     color: #f46757;
   }
+
+  @media screen and (max-width: 1300px) {
+    .login-box {
+      width: 35%;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .login-box {
+      width: 80%;
+      height: 80vh;
+    }
+  }
