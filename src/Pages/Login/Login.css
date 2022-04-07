@@ -1,0 +1,119 @@
+.login-container {
+    background-image: url("../../../public/Images/login-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.login-box {
+    height: 55vh;
+    width: 27%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-box h1 {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.login-box h2 {
+    font-size: 48px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.login-box input {
+    font-family: "Outfit", sans-serif;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px;
+    outline: none;
+    margin-top: 24px;
+}
+
+.login-box .error {
+    border: 2px solid #f2796b;
+}
+
+.login-box .error-text {
+    color: #f2796b;
+    width: 87.5%;
+    text-align: left;
+    margin-top: 1rem;
+}
+
+.login-btn {
+    border: none;
+    border-radius: 0.5rem;
+    background: #f2796b;
+    color: #fff;
+    width: 100%;
+    padding: 1rem;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px;
+    cursor: pointer;
+    margin-top: 24px;
+  }
+
+  .login-btn:hover {
+    background: #f46757;
+    cursor: pointer;
+  }
+
+  .separator {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #786f6f;
+    margin-top: 24px;
+  }
+  
+  .separator::before,
+  .separator::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #786f6f;
+  }
+  
+  .separator:not(:empty)::before {
+    margin-right: 0.5rem;
+  }
+  
+  .separator:not(:empty)::after {
+    margin-left: 0.5rem;
+  }
+
+  .no-account {
+    color: #948888;
+    font-weight: 400;
+    margin-top: 24px;
+  }
+  
+  .signup {
+    text-decoration: none;
+    color: black;
+  }
+
+  .signup:hover {
+    cursor: pointer;
+    color: #f46757;
+  }
