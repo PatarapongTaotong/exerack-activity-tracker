@@ -7,7 +7,7 @@ const RecordList = ({records}) => {
             {
                 records.map(record => {
                     return <Record record={record} 
-                                   key={record.id}  />
+                                   key={record._id}  />
                 })
             }
         </div>

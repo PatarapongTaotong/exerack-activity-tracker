@@ -3,9 +3,26 @@
   height: 800px;
 }
 
+.avatar-mobile {
+  background-color: #f1f1f1;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  margin-bottom: 30px;
+}
+
 .avatar-image {
   object-fit: cover;
   height: 800px;
+}
+
+.avatar-image-mobile {
+  object-fit: cover;;
+}
+
+.avatar-mobile-container {
+  display: none;
+  width: 100%;
 }
 
 .home-main-section {
@@ -18,5 +35,12 @@
   .home-main-section {
     grid-template-columns: 1fr;
     column-gap: 0px;
+  }
+  .avatar {
+    display: none;
+  }
+  .avatar-mobile-container {
+    display: flex;
+    justify-content: center;
   }
 }

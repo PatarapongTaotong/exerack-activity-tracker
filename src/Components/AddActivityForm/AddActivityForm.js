@@ -2,7 +2,7 @@ import './AddActivityForm.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const AddActivityForm = ({closeForm, activityType}) => {
+const AddActivityForm = ({closeForm, activityType, icon}) => {
     const [activityName, setActivityName] = useState('');
     const [isNameOk, setIsNameOk] = useState(false);
     const [activityDescription, setActivityDescription] = useState('');
@@ -12,7 +12,7 @@ const AddActivityForm = ({closeForm, activityType}) => {
     const [isTimeOk, setIsTimeOk] = useState(false);
 
     const onChangeName = (e) => {
-        setActivityName(e.target.value);  
+        setActivityName(e.target.value);       
     }
 
     useEffect (() => {
@@ -62,15 +62,17 @@ const AddActivityForm = ({closeForm, activityType}) => {
     const onSubmit = async () => {
         try {
             const instance = axios.create({
-                baseURL: 'http://localhost:3030',
+                baseURL: 'http://localhost:4000',
                 timeout: 120000,
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
+
             const payload = {
                 userId: 'someMocckupId',
                 activityType,
+                icon,
                 activityName,
                 activityDescription,
                 date,
