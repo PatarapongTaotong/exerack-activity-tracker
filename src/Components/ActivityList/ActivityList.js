@@ -15,31 +15,31 @@ const ActivityList = () => {
 
         switch (input) {
             case ('Run'):
-                setIcon('<i className="fa-solid fa-person-running"></i>');
+                setIcon("fa-solid fa-person-running");
                 break;
             case ('Bicycle'):
-                setIcon('<i class="fa-solid fa-bicycle"></i>');
+                setIcon("fa-solid fa-bicycle");
                 break;
             case ('Ride'):
-                setIcon('<i class="fa-solid fa-person-biking-mountain"></i>');
+                setIcon("fa-solid fa-person-biking-mountain");
                 break;
             case ('Swim'):
-                setIcon('<i class="fa-solid fa-person-swimming"></i>');
+                setIcon("fa-solid fa-person-swimming");
                 break;
             case ('Walk'):
-                setIcon('<i class="fa-solid fa-person-walking"></i>');
+                setIcon("fa-solid fa-person-walking");
                 break;
             case ('Hike'):
-                setIcon('<i class="fa-solid fa-person-hiking"></i>');
+                setIcon("fa-solid fa-person-hiking");
                 break;
             case ('Weight-training'):
-                setIcon('<i class="fa-solid fa-dumbbell"></i>');
+                setIcon("fa-solid fa-dumbbell");
                 break;
             case ('Boxing'):
-                setIcon('<i class="fa-solid fa-boxing-glove"></i>');
+                setIcon("fa-solid fa-boxing-glove");
                 break;
             case ('Yoga'):
-                setIcon('<i class="fa-solid fa-child-reaching"></i>');
+                setIcon("fa-solid fa-child-reaching");
                 break;
             default:
                 setIcon(null);
