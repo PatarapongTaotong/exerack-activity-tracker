@@ -90,7 +90,7 @@ const EditActivityForm = ({closeForm, activityType, icon}) => {
     return (
         <div id="edit-activity-form">
             <form action="#" className="form-container" onSubmit={onSubmit}>
-                <h3>Record Activity</h3>
+                <h3>Edit Activity</h3>
                 
                 <label htmlFor="ac-type" className="label">Activity Type</label>
                 <input id="ac-type" name="ac-type" type="text" value={activityType} readOnly />
