@@ -1,5 +1,8 @@
 import './Signup.css';
 import { useState, useEffect } from 'react';
+import UserProvider from '../../Resources/UserProvider';
+
+const UserService = new UserProvider();
 
 const Signup = () => {
     const [isInvalid, setIsInvalid] = useState(false);
@@ -15,13 +18,26 @@ const Signup = () => {
       };
     
   
-      useEffect(() => {
-          if(email.length > 0){ 
-              setIsInvalid(!validateEmail(email));
-          } else {
-              setIsInvalid(false);
-          }
-      },[email]);
+    useEffect(() => {
+        if(email.length > 0){ 
+            setIsInvalid(!validateEmail(email));
+        } else {
+            setIsInvalid(false);
+        }
+    },[email]);
+
+    const handleClick = async () => {
+        try {
+            const payload = {
+                email,
+                password
+            }
+
+            const { data } = await UserService.createUser(payload);
+        } catch (error) {
+            console.log({error});
+        }
+    }
 
     return (
         <div>
@@ -30,16 +46,16 @@ const Signup = () => {
                     <h1>Sign Up</h1>
                     <h2><em>Exerack</em></h2>
                     <input className={isInvalid ? 'error' : ''} 
-                        id='email' type='text' name='email' 
+                        id='email' type='email' name='email' 
                         placeholder='Enter your email' 
                         value={email} 
                         onChange={e => setEmail(e.target.value)} />
                     {isInvalid && <div className='error-text'>Email is invalid</div>}
-                    <input id='password' type='text' name='password' 
+                    <input id='password' type='password' name='password' 
                         placeholder='Enter your password' 
                         value={password} 
                         onChange={e => setPassword(e.target.value)} />
-                    <button className='signup-btn'>Sign Up</button>    
+                    <button className='signup-btn' onClick={handleClick}>Sign Up</button>    
                 </div>
             </div>
         </div>

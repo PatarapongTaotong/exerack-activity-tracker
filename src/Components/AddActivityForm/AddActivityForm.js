@@ -1,6 +1,5 @@
 import './AddActivityForm.css';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import ActivityProvider from '../../Resources/ActivityProvider';
 
 const ActivityService = new ActivityProvider();
