@@ -1,6 +1,9 @@
 import './AddActivityForm.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import ActivityProvider from '../../Resources/ActivityProvider';
+
+const ActivityService = new ActivityProvider();
 
 const AddActivityForm = ({closeForm, activityType, icon}) => {
     const [activityName, setActivityName] = useState('');
@@ -61,14 +64,6 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
 
     const onSubmit = async () => {
         try {
-            const instance = axios.create({
-                baseURL: 'http://localhost:4000',
-                timeout: 120000,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-
             const payload = {
                 userId: 'someMocckupId',
                 activityType,
@@ -79,9 +74,7 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
                 duration: time
             }
 
-            const created = await instance.post('/activities', payload)
-
-            console.log({ created });
+            const { data } = await ActivityService.createActivity(payload);
         } catch (error) {
             console.log({error});
         }
