@@ -16,9 +16,13 @@ export const setAuthUser = (token) => {
     const { exp } = jwtDecode(token);
     const dateExpiry = exp * 1000;
 
-    Cookies.set(StorageName, token, { expores: new Date(dateExpiry) })
+    Cookies.set(StorageName, token, { expires: new Date(dateExpiry) })
 
     return getAuth()
+}
+
+export const clearAuth = () => {
+    Cookies.remove(StorageName)
 }
 
 export const getAuthToken = () => {

@@ -76,6 +76,7 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
             const { data } = await ActivityService.createActivity(payload);
         } catch (error) {
             console.log({error});
+            alert(error.message);
         }
     }
 

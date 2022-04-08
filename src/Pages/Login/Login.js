@@ -1,6 +1,7 @@
 import './Login.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { setAuthUser } from '../../Assets/js/Authentication';
 import AuthProvider from '../../Resources/AuthProvider';
 
 const AuthService = new AuthProvider();
@@ -35,7 +36,8 @@ const Login = () => {
             }
 
             const { data } = await AuthService.login(payload);
-            console.log(data)
+            const token = setAuthUser(data);
+            console.log(token)
         } catch (error) {
             console.log({error});
         }

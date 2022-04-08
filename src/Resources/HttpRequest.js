@@ -38,6 +38,11 @@ class HttpRequest {
         })
     }
 
+    setHeader (header) {
+        this.axiosInstance.defaults.headers.common[header.key] =header.value;
+        this.axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+    }
+
     get (endpoint, data, config) {
         const params = {
             params: data
