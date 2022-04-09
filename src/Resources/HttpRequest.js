@@ -3,7 +3,6 @@ import humps from 'humps';
 
 class HttpRequest {
     constructor (endpoint = process.env.REACT_APP_API) {
-        console.log(endpoint)
         this.axiosInstance = axios.create({
             baseURL: endpoint,
             timeout: 120000,
@@ -57,11 +56,11 @@ class HttpRequest {
     }
 
     put (endpoint, data, config) {
-        return this.axiosInstance.post(endpoint, data, config);
+        return this.axiosInstance.put(endpoint, data, config);
     }
 
     patch (endpoint, data, config) {
-        return this.axiosInstance.post(endpoint, data, config);
+        return this.axiosInstance.patch(endpoint, data, config);
     }
 
     remove (endpoint, data, config) {
