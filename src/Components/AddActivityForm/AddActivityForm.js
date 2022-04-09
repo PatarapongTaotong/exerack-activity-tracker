@@ -61,7 +61,7 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
         }
     }, [time])
 
-    const onSubmit = async () => {
+    const onSubmit = async (event) => {
         try {
             const payload = {
                 userId: 'someMocckupId',
@@ -73,7 +73,9 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
                 duration: time
             }
 
-            const { data } = await ActivityService.createActivity(payload);
+            event.preventDefault();
+            const { data } = await ActivityService.createActivity(payload); 
+            closeForm();
         } catch (error) {
             console.log({error});
             alert(error.message);
