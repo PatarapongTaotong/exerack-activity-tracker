@@ -1,5 +1,7 @@
 import './Signup.css';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Loader from '../../Components/Loader/Loader';
 import UserProvider from '../../Resources/UserProvider';
 
 const UserService = new UserProvider();
@@ -8,6 +10,9 @@ const Signup = () => {
     const [isInvalid, setIsInvalid] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showLoader, setShowLoader] = useState(false);
+
+    const navigate = useNavigate();
 
     const validateEmail = (email) => {
         return String(email)
@@ -27,6 +32,14 @@ const Signup = () => {
     },[email]);
 
     const handleClick = async () => {
+        if (email.length === 0) {
+            alert('Email shoud not be empty');
+            return;
+        } else if (password.length === 0) {
+            alert('Password shoud not be empty');
+            return;
+        }
+
         try {
             const payload = {
                 email,
@@ -34,13 +47,18 @@ const Signup = () => {
             }
 
             const { data } = await UserService.createUser(payload);
+            setShowLoader(true);
+            setTimeout (() => {
+                setShowLoader(false);
+                navigate('/', { replace: true });
+            }, 1000);
         } catch (error) {
             console.log({error});
         }
     }
 
     return (
-        <div>
+        <>
             <div className="signup-container">
                 <div className="signup-box">
                     <h1>Sign Up</h1>
@@ -55,10 +73,11 @@ const Signup = () => {
                         placeholder='Enter your password' 
                         value={password} 
                         onChange={e => setPassword(e.target.value)} />
-                    <button className='signup-btn' onClick={handleClick}>Sign Up</button>    
+                    <button className='signup-btn' onClick={ isInvalid ? '' : handleClick }>Sign Up</button>    
                 </div>
             </div>
-        </div>
+            {showLoader && <Loader />}
+        </>
     );
 }
 
