@@ -12,6 +12,7 @@ const Signup = () => {
     const [isInvalid, setIsInvalid] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [showLoader, setShowLoader] = useState(false);
 
     const navigate = useNavigate();
@@ -44,6 +45,10 @@ const Signup = () => {
         
         if (password.length === 0) {
             return alert('Password shoud not be empty');
+        }
+
+        if (password !== confirmPassword) {
+            return alert('Incorrect password');
         }
 
         try {
@@ -83,6 +88,10 @@ const Signup = () => {
                         placeholder='Enter your password' 
                         value={password} 
                         onChange={e => setPassword(e.target.value)} />
+                    <input id='confirm-password' type='password' name='confirm-password' 
+                        placeholder='Confirm your password' 
+                        value={confirmPassword} 
+                        onChange={e => setConfirmPassword(e.target.value)} />
                     <button className='signup-btn' onClick={ isInvalid ? '' : handleClick }>Sign Up</button>    
                 </RegisterForm>
             </div>
