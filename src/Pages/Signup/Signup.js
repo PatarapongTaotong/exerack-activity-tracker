@@ -8,6 +8,7 @@ import UserProvider from '../../Resources/UserProvider';
 const UserService = new UserProvider();
 
 const Signup = () => {
+    const [username, setUsername] = useState('');
     const [isInvalid, setIsInvalid] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -33,18 +34,23 @@ const Signup = () => {
     },[email]);
 
     const handleClick = async () => {
+        if (username.length === 0) {
+            return alert('Please enter your name');
+        }  
+        
         if (email.length === 0) {
-            alert('Email shoud not be empty');
-            return;
-        } else if (password.length === 0) {
-            alert('Password shoud not be empty');
-            return;
+            return alert('Email shoud not be empty');
+        }  
+        
+        if (password.length === 0) {
+            return alert('Password shoud not be empty');
         }
 
         try {
             const payload = {
                 email,
-                password
+                password,
+                username
             }
 
             const { data } = await UserService.createUser(payload);
@@ -64,6 +70,9 @@ const Signup = () => {
                 <RegisterForm>
                     <h1>Sign Up</h1>
                     <h2><em>Exerack</em></h2>
+                    <input id='name' type='text' name='name' placeholder='Enter your name'
+                        value={username}
+                        onChange={e => setUsername(e.target.value)} />
                     <input className={isInvalid ? 'error' : ''} 
                         id='email' type='email' name='email' 
                         placeholder='Enter your email' 
