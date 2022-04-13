@@ -1,5 +1,6 @@
 import './Login.css';
 import { useState, useEffect } from 'react';
+import RegisterForm from '../../Components/RegisterForm/RegisterForm';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../Components/Loader/Loader';
@@ -66,7 +67,7 @@ const Login = () => {
     return (
         <>
             <div className="login-container">
-                <div className="login-box">
+                <RegisterForm>
                     <h1>Login</h1>
                     <h2><em>Exerack</em></h2>
                     <input className={isInvalid ? 'error' : ''} 
@@ -87,7 +88,7 @@ const Login = () => {
                             <Link to='./signup' className='signup'>{' Sign Up'}</Link>
                         </span>
                     </div>
-                </div>
+                </RegisterForm>
             </div>
             {showLoader && <Loader />}
         </>

@@ -1,5 +1,6 @@
 import './Signup.css';
 import { useState, useEffect } from 'react';
+import RegisterForm from '../../Components/RegisterForm/RegisterForm';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../Components/Loader/Loader';
 import UserProvider from '../../Resources/UserProvider';
@@ -60,7 +61,7 @@ const Signup = () => {
     return (
         <>
             <div className="signup-container">
-                <div className="signup-box">
+                <RegisterForm>
                     <h1>Sign Up</h1>
                     <h2><em>Exerack</em></h2>
                     <input className={isInvalid ? 'error' : ''} 
@@ -74,7 +75,7 @@ const Signup = () => {
                         value={password} 
                         onChange={e => setPassword(e.target.value)} />
                     <button className='signup-btn' onClick={ isInvalid ? '' : handleClick }>Sign Up</button>    
-                </div>
+                </RegisterForm>
             </div>
             {showLoader && <Loader />}
         </>
