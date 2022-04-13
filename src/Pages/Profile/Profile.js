@@ -3,8 +3,17 @@ import NavBar from '../../Components/NavBar/NavBar';
 import MainBoard from '../../Components/MainBoard/MainBoard';
 import Footer from '../../Components/Footer/Footer';
 import QuickLink from '../../Components/QuickLink/QuickLink';
+import { clearAuth } from '../../Assets/js/Authentication';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+    const navigate = useNavigate();
+
+    const logout = () => {
+        clearAuth();
+        navigate('/', { replace: true });
+    }
+
     return (
         <>
             <NavBar />
@@ -26,7 +35,7 @@ const Profile = () => {
                         <label>Email: </label>
                         <input id="email" name="email" type="text" readOnly />
                         <div className="logout-button">
-                            <button className="logout">Logout</button>
+                            <button className="logout" onClick={logout}>Logout</button>
                         </div>        
                     </div>
                 </div>

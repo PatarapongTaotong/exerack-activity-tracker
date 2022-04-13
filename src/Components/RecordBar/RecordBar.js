@@ -1,12 +1,36 @@
 import './RecordBar.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import RecordResults from '../RecordResults/RecordResults';
 import Button from '../Button/Button';
+import { getAuthDecode } from '../../Assets/js/Authentication';
+import ActivityProvider from '../../Resources/ActivityProvider';
+import EditActivityForm from '../EditAcitivityForm/EditActivityForm';
+
+const ActivityService = new ActivityProvider();
 
 const RecordBar = () => {
-    const [recordData, setRecordData] = useState([ {_id:"1", name:"Run", date: "23 Mar 2022", duration: "60 mins", description: "At JJ park with Joe, Sara and Paul", icon: <i className="fa-solid fa-person-running"></i>},
-    {_id:"2", name:"Run", date: "23 Mar 2022", duration: "60 mins", description: "At JJ park with Joe, Sara and Paul", icon: <i className="fa-solid fa-person-running"></i>},
-    {_id:"3", name:"Run", date: "23 Mar 2022", duration: "60 mins", description: "At JJ park with Joe, Sara and Paul", icon: <i className="fa-solid fa-person-running"></i>} ]);
+    const [recordData, setRecordData] = useState([]);
+    const [showEdit, setShowEdit] = useState(false);
+    const [editData, setEditData] = useState({});
+
+    const fetchActivities = async () => {
+        try {
+            const { id } = getAuthDecode();
+            const { data } = await ActivityService.getActivitiesByUserId(id);
+            setRecordData(data);
+        } catch (error) {
+            console.log(error)
+        }    
+    }
+
+    useEffect(() => {
+        fetchActivities();
+    }, [])
+
+    const onClickRecord = (record) => {
+        setEditData(record);
+        setShowEdit(true);
+    }
 
     return (
         <div className="container section">
@@ -19,9 +43,14 @@ const RecordBar = () => {
                 </div>
             </div>
             <div className="home-main-section">
-                <RecordResults recordData={recordData} />
+                <RecordResults recordData={recordData} onClickRecord={onClickRecord} />
                 <Button link='/history'>View all records</Button>
             </div>
+            {showEdit && <EditActivityForm editData={editData} 
+                                            closeForm={() => setShowEdit(false)} 
+                                            activityType={editData.activityType} 
+                                            icon={editData.icon}
+                                            onEdit={() => fetchActivities()} />}
         </div>
     );
 }

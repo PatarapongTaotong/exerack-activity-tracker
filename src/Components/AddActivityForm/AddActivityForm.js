@@ -1,6 +1,7 @@
 import './AddActivityForm.css';
 import { useState, useEffect } from 'react';
 import ActivityProvider from '../../Resources/ActivityProvider';
+import { getAuthDecode } from '../../Assets/js/Authentication';
 
 const ActivityService = new ActivityProvider();
 
@@ -63,8 +64,10 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
 
     const onSubmit = async (event) => {
         try {
+            const { id } = getAuthDecode();
+
             const payload = {
-                userId: 'someMocckupId',
+                userId: id,
                 activityType,
                 icon,
                 activityName,
@@ -75,6 +78,7 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
 
             event.preventDefault();
             const { data } = await ActivityService.createActivity(payload); 
+            console.log(data);
             closeForm();
         } catch (error) {
             console.log({error});

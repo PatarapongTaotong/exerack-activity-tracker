@@ -1,8 +1,12 @@
 import './EditActivityForm.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import dayjs from 'dayjs';
+import ActivityProvider from '../../Resources/ActivityProvider';
 
-const EditActivityForm = ({closeForm, activityType, icon}) => {
+const ActivityService = new ActivityProvider();
+
+const EditActivityForm = ({closeForm, activityType, icon, editData, onEdit}) => {
     const [activityName, setActivityName] = useState('');
     const [isNameOk, setIsNameOk] = useState(false);
     const [activityDescription, setActivityDescription] = useState('');
@@ -10,6 +14,13 @@ const EditActivityForm = ({closeForm, activityType, icon}) => {
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [isTimeOk, setIsTimeOk] = useState(false);
+
+    useEffect(() => {
+        setActivityName(editData.activityName);
+        setActivityDescription(editData.activityDescription);
+        setDate(dayjs(editData.date).format('YYYY-MM-DD'));
+        setTime(editData.duration);
+    }, [editData])
 
     const onChangeName = (e) => {
         setActivityName(e.target.value);       
@@ -59,18 +70,10 @@ const EditActivityForm = ({closeForm, activityType, icon}) => {
         }
     }, [time])
 
-    const onSubmit = async () => {
+    const onSubmit = async (event) => {
         try {
-            const instance = axios.create({
-                baseURL: 'http://localhost:4000',
-                timeout: 120000,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-
             const payload = {
-                userId: 'someMocckupId',
+                userId: editData.userId,
                 activityType,
                 icon,
                 activityName,
@@ -79,9 +82,13 @@ const EditActivityForm = ({closeForm, activityType, icon}) => {
                 duration: time
             }
 
-            const created = await instance.post('/activities', payload)
-
-            console.log({ created });
+            event.preventDefault();
+            const data = await ActivityService.editActivityByUserId(editData.id, payload);
+            if (data) {
+                onEdit();
+                closeForm();
+            }
+            
         } catch (error) {
             console.log({error});
         }

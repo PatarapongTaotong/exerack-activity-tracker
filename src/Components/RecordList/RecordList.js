@@ -1,13 +1,14 @@
 import './RecordList.css';
 import Record from '../Record/Record';
 
-const RecordList = ({records}) => {
+const RecordList = ({records, onClickRecord}) => {
     return (
         <div className="record-list">
             {
                 records.map(record => {
                     return <Record record={record} 
-                                   key={record._id}  />
+                                   key={record.id}  
+                                   onClick={() => onClickRecord(record)} />
                 })
             }
         </div>

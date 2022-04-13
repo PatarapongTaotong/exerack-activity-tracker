@@ -4,6 +4,7 @@ import RegisterForm from '../../Components/RegisterForm/RegisterForm';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../Components/Loader/Loader';
 import UserProvider from '../../Resources/UserProvider';
+import Swal from 'sweetalert2';
 
 const UserService = new UserProvider();
 
@@ -58,14 +59,23 @@ const Signup = () => {
                 username
             }
 
-            const { data } = await UserService.createUser(payload);
+            const { data, message } = await UserService.createUser(payload);
+            if (data) {
+                console.log(data);
+            }
+
             setShowLoader(true);
             setTimeout (() => {
                 setShowLoader(false);
                 navigate('/', { replace: true });
             }, 1000);
         } catch (error) {
-            console.log({error});
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: '<a href="">Why do I have this issue?</a>'
+            })
         }
     }
 

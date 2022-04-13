@@ -2,14 +2,14 @@ import './RecordResults.css';
 import RecordList from '../RecordList/RecordList';
 import Button from '../Button/Button';
 
-const RecordResults = ({recordData}) => {
+const RecordResults = ({recordData, onClickRecord}) => {
     return (
         <div className="record-results">
             <div className="record-results-header">
                 <div className="record-title">Records</div>
                 <Button link="/activities">ADD</Button>
             </div>
-            <RecordList records={recordData} />
+            <RecordList records={recordData} onClickRecord={onClickRecord} />
         </div>
     );
 }

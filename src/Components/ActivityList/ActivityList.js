@@ -21,7 +21,7 @@ const ActivityList = () => {
                 setIcon("fa-solid fa-bicycle");
                 break;
             case ('Ride'):
-                setIcon("fa-solid fa-person-biking-mountain");
+                setIcon("fa-solid fa-motorcycle");
                 break;
             case ('Swim'):
                 setIcon("fa-solid fa-person-swimming");
@@ -36,7 +36,7 @@ const ActivityList = () => {
                 setIcon("fa-solid fa-dumbbell");
                 break;
             case ('Boxing'):
-                setIcon("fa-solid fa-boxing-glove");
+                setIcon("fa-solid fa-hand-back-fist");
                 break;
             case ('Yoga'):
                 setIcon("fa-solid fa-child-reaching");

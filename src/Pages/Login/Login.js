@@ -4,7 +4,7 @@ import RegisterForm from '../../Components/RegisterForm/RegisterForm';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../Components/Loader/Loader';
-import { setAuthUser } from '../../Assets/js/Authentication';
+import { setAuthUser, getAuth } from '../../Assets/js/Authentication';
 import AuthProvider from '../../Resources/AuthProvider';
 
 const AuthService = new AuthProvider();
@@ -24,6 +24,12 @@ const Login = () => {
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         );
     };
+
+    useEffect(() => {
+        if (getAuth()) {
+            navigate('/home', { replace: true });
+        }
+    }, [])
     
   
     useEffect(() => {
