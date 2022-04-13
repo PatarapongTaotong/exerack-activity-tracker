@@ -7,8 +7,8 @@
 }
 
 @media screen and (max-width: 512px) {
-  .mainboard-text {
-    font-size: 48px;
+  #banner {
+    display: none;
   }
 }
 
