@@ -1,3 +1,28 @@
+.edit-image {
+    position: absolute;
+    top: 24px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #d4d3d3;
+    border: 1px black solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-image:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.pencil-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+}
+
 .logout {
     background-color: #f87060;
     color: white;
@@ -16,21 +41,6 @@
 .logout-button {
     display: flex;
     justify-content: center;
-}
-
-.edit-profile-image {
-    background-color: #e6e3e3;
-    color: black;
-    width: fit-content;
-    padding: 12px 16px;
-    text-decoration: none;
-    border-radius: 8px;
-    border: 0px;
-}
-  
-.edit-profile-image:hover {
-  opacity: 0.6;
-  cursor: pointer;
 }
 
 .profile-container {
@@ -55,12 +65,18 @@
     background: #f1f1f1;
 }
 
+#username {
+    background: white;
+    border: 1px black solid;
+}
+
 .profile-image {
     background-color: #f1f1f1;
-    height: 300px;
-    width: 300px;
+    height: 250px;
+    width: 250px;
     border-radius: 50%;
     margin-bottom: 30px;
+    position: relative;
 } 
 
 .profile-picture {
@@ -70,7 +86,8 @@
 @media screen and (max-width: 768px) {
     .profile-image {
         background-color: #f1f1f1;
-        height: 250px;
-        width: 250px;
+        height: 200px;
+        width: 200px;
     }
 }
+

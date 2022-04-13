@@ -1,0 +1,29 @@
+.quick-link {
+    position: fixed;
+    right: 72px;
+    bottom: 60px;
+    width: 70px;
+    height: 70px;
+    background-color: #f87060;
+    border-radius: 50%;
+    z-index: 9;
+}
+
+.plus-sign {
+    color: white;
+    text-decoration: none;
+    font-size: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quick-link:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 512px) {
+    .quick-link {
+        display: none;
+    }
+}

@@ -1,6 +1,7 @@
 import './Profile.css';
 import NavBar from '../../Components/NavBar/NavBar';
 import MainBoard from '../../Components/MainBoard/MainBoard';
+import AddActivityButton from '../../Components/AddActivityButton/AddActivityButton';
 import Footer from '../../Components/Footer/Footer';
 
 const Profile = () => {
@@ -8,23 +9,29 @@ const Profile = () => {
         <>
             <NavBar />
             <MainBoard title="Edit" background="profile">Your profile data</MainBoard>
-            <div className="profile-container">
-                <div className="profile-image">
-                    <img src="./Images/avatar.png" alt="Profile image" className="profile-picture" />
+            <div className="container section">
+                <div>
+                    <h2 className="section-title">Let edit your profile</h2>
                 </div>
-                <div className="edit-image">
-                        <button className="edit-profile-image">Edit profile image</button>
-                </div> 
-                <div className="profile-data">
-                    <label id="userName">Username: </label>
-                    <input id="userName" name="userName" type="text" />
-                    <label id="email">Email: </label>
-                    <input id="email" name="email" type="text" />
-                    <div className="logout-button">
-                        <button className="logout">Logout</button>
-                    </div>        
+                <div className="profile-container">
+                    <div className="profile-image">
+                        <img src="./Images/avatar.png" alt="Profile image" className="profile-picture" />
+                        <div className="edit-image">
+                            <img src="./Images/pencil.png" alt="pencil icon" className="pencil-icon"/>
+                        </div>
+                    </div> 
+                    <div className="profile-data">
+                        <label>Name: </label>
+                        <input id="username" name="username" type="text" />
+                        <label>Email: </label>
+                        <input id="email" name="email" type="text" readOnly />
+                        <div className="logout-button">
+                            <button className="logout">Logout</button>
+                        </div>        
+                    </div>
                 </div>
             </div>
+            <AddActivityButton />
             <Footer>© EXERACK 2022</Footer>
         </>
     );

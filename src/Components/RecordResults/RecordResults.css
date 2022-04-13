@@ -5,11 +5,12 @@
 }
 
 .record-results {
-  width: 100%;
+  width: 60%;
   height: 800px;
   overflow-y: scroll;
   padding: 0.88rem;
   background-color: #f1f1f1;
+  margin-bottom: 32px;
 }
 
 .record-results-header {
@@ -29,4 +30,10 @@
 
 .record-results::-webkit-scrollbar-thumb {
   background: #fff;
+}
+
+@media screen and (max-width: 512px) {
+  .record-results {
+    width: 100%;;
+  }
 }

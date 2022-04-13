@@ -1,6 +1,7 @@
 import './RecordBar.css';
 import { useState } from 'react';
 import RecordResults from '../RecordResults/RecordResults';
+import Button from '../Button/Button';
 
 const RecordBar = () => {
     const [recordData, setRecordData] = useState([ {_id:"1", name:"Run", date: "23 Mar 2022", duration: "60 mins", description: "At JJ park with Joe, Sara and Paul", icon: <i className="fa-solid fa-person-running"></i>},
@@ -12,16 +13,14 @@ const RecordBar = () => {
             <div>
                 <h2 className="section-title">Hi Rowan Row, welcome to Exerack</h2>
             </div>
-            <div className="avatar-mobile-container">
-                <div className="avatar-mobile">
-                        <img src="./Images/avatar.png" alt="Profile image" className="avatar-image-mobile" />
+            <div className="avatar-container">
+                <div className="avatar">
+                    <img src="./Images/avatar.png" alt="Profile image" className="avatar-image" />
                 </div>
             </div>
             <div className="home-main-section">
                 <RecordResults recordData={recordData} />
-                <div className="avatar">
-                    <img src="./Images/avatar.png" alt="Profile image" className="avatar-image" />
-                </div>
+                <Button link='/history'>View all records</Button>
             </div>
         </div>
     );
