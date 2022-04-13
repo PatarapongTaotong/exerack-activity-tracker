@@ -89,5 +89,13 @@
         height: 200px;
         width: 200px;
     }
+    .edit-image {
+        width: 30px;
+        height: 30px;
+    }
+    .pencil-icon {
+        width: 20px;
+        height: 20px;
+    }
 }
 

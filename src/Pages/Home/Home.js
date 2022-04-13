@@ -3,7 +3,7 @@ import NavBar from '../../Components/NavBar/NavBar';
 import MainBoard from '../../Components/MainBoard/MainBoard';
 import RecordBar from '../../Components/RecordBar/RecordBar';
 import Footer from '../../Components/Footer/Footer';
-import AddActivityButton from '../../Components/AddActivityButton/AddActivityButton';
+import QuickLink from '../../Components/QuickLink/QuickLink';
 
 const Home = () => {
     return (
@@ -11,7 +11,7 @@ const Home = () => {
             <NavBar />
             <MainBoard title="Exerack" background="home">Your activity tracker</MainBoard>
             <RecordBar />
-            <AddActivityButton />
+            <QuickLink />
             <Footer>© EXERACK 2022</Footer>
         </>
     );

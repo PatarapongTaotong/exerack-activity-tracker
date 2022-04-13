@@ -1,8 +1,8 @@
 import './Profile.css';
 import NavBar from '../../Components/NavBar/NavBar';
 import MainBoard from '../../Components/MainBoard/MainBoard';
-import AddActivityButton from '../../Components/AddActivityButton/AddActivityButton';
 import Footer from '../../Components/Footer/Footer';
+import QuickLink from '../../Components/QuickLink/QuickLink';
 
 const Profile = () => {
     return (
@@ -31,7 +31,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <AddActivityButton />
+            <QuickLink />
             <Footer>© EXERACK 2022</Footer>
         </>
     );

@@ -54,7 +54,7 @@ const ActivityList = () => {
 
     return (
         <div className="container section">
-            <h2 className="section-title">Activity List</h2>
+            <h2 id="activity-list" className="section-title">Activity List</h2>
             <div className="activity-list">
                 {
                     activityList.map(activity => {

@@ -1,0 +1,58 @@
+.quick-link-add {
+    position: fixed;
+    right: 72px;
+    bottom: 150px;
+    width: 70px;
+    height: 70px;
+    background-color: black;
+    border-radius: 50%;
+    z-index: 9;
+}
+
+.quick-link-table {
+    position: fixed;
+    right: 72px;
+    bottom: 60px;
+    width: 70px;
+    height: 70px;
+    background-color: black;
+    border-radius: 50%;
+    z-index: 9;
+}
+
+.plus-sign {
+    color: white;
+    text-decoration: none;
+    font-size: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-sign {
+    color: white;
+    text-decoration: none;
+    font-size: 40px;
+    position: absolute;
+    top: 11px;
+    left: 15px;
+}
+
+.quick-link-add:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.quick-link-table:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 512px) {
+    .quick-link-add {
+        display: none;
+    }
+    .quick-link-table {
+        display: none;
+    }
+}
