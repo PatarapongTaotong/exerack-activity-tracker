@@ -105,6 +105,48 @@ const EditActivityForm = ({closeForm, activityType, icon, editData, onEdit}) => 
         }
     }
 
+    const onDelete = async (event) => {
+        try {
+            const payload = {
+                status: 'delete'
+            }
+
+            event.preventDefault();
+            const { data } = await ActivityService.editActivityByUserId(editData.id, payload);
+            if (data) {
+                onEdit();
+                closeForm();
+                Swal.fire(
+                    'Deleted!',
+                    'Your record has been deleted.',
+                    'success'
+                )
+            }                  
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Something wrong',
+                text: error.message,
+            });
+        }
+    }
+
+    const handleDelete = (event) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete this recoed!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                onDelete(event);
+            }
+        })
+    }
+
     return (
         <div id="edit-activity-form">
             <form action="#" className="form-container" onSubmit={onSubmit}>
@@ -135,7 +177,7 @@ const EditActivityForm = ({closeForm, activityType, icon, editData, onEdit}) => 
                 </div>
                 
                 <button id="submit" type="submit" className="btn">Keep Change</button>
-                <button type="button" className="delete">Delete</button>
+                <button type="button" className="delete" onClick={handleDelete}>Delete</button>
                 <button type="button" className="btn cancel" onClick={closeForm}>Close</button>
 
             </form>
