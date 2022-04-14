@@ -4,15 +4,18 @@ import RecordResults from '../RecordResults/RecordResults';
 import Button from '../Button/Button';
 import { getAuthDecode } from '../../Assets/js/Authentication';
 import ActivityProvider from '../../Resources/ActivityProvider';
+import UserProvider from '../../Resources/UserProvider';
 import EditActivityForm from '../EditAcitivityForm/EditActivityForm';
 import Swal from 'sweetalert2';
 
 const ActivityService = new ActivityProvider();
+const UserService = new UserProvider();
 
 const RecordBar = () => {
     const [recordData, setRecordData] = useState([]);
     const [showEdit, setShowEdit] = useState(false);
     const [editData, setEditData] = useState({});
+    const [name, setName] = useState('');
 
     const fetchActivities = async () => {
         try {
@@ -28,8 +31,23 @@ const RecordBar = () => {
         }    
     }
 
+    const getUsername = async () => {
+        try {
+            const { id } = getAuthDecode();
+            const { data } = await UserService.getUserById(id);
+            setName(data.username);
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Something wrong',
+                text: error.message,
+            });
+        }  
+    }
+
     useEffect(() => {
         fetchActivities();
+        getUsername();
     }, [])
 
     const onClickRecord = (record) => {
@@ -40,7 +58,7 @@ const RecordBar = () => {
     return (
         <div className="container section">
             <div>
-                <h2 className="section-title">Hi Rowan Row, welcome to Exerack</h2>
+                <h2 className="section-title">Hi {name}, welcome to Exerack</h2>
             </div>
             <div className="avatar-container">
                 <div className="avatar">
