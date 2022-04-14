@@ -37,19 +37,27 @@ const Signup = () => {
 
     const handleClick = async () => {
         if (username.length === 0) {
-            return alert('Please enter your name');
+            return Swal.fire('Please enter your name');
         }  
         
         if (email.length === 0) {
-            return alert('Email shoud not be empty');
+            return Swal.fire('Please enter your email');
         }  
         
         if (password.length === 0) {
-            return alert('Password shoud not be empty');
+            return Swal.fire('Please enter your password');
+        }
+
+        if (confirmPassword.length === 0) {
+            return Swal.fire('Please confirm your password');
         }
 
         if (password !== confirmPassword) {
-            return alert('Incorrect password');
+            return  Swal.fire({
+                        icon: 'error',
+                        title: 'Incorrect password',
+                        text: 'Please recheck your password',
+                    });
         }
 
         try {
@@ -59,9 +67,15 @@ const Signup = () => {
                 username
             }
 
-            const { data, message } = await UserService.createUser(payload);
+            const { data } = await UserService.createUser(payload);
             if (data) {
-                console.log(data);
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Sign up successfully',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
             }
 
             setShowLoader(true);
@@ -72,9 +86,8 @@ const Signup = () => {
         } catch (error) {
             Swal.fire({
                 icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-                footer: '<a href="">Why do I have this issue?</a>'
+                title: 'Cannot sign up',
+                text: 'This email has been used already',
             })
         }
     }
