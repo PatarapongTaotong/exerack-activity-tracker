@@ -2,6 +2,7 @@ import './AddActivityForm.css';
 import { useState, useEffect } from 'react';
 import ActivityProvider from '../../Resources/ActivityProvider';
 import { getAuthDecode } from '../../Assets/js/Authentication';
+import Swal from 'sweetalert2';
 
 const ActivityService = new ActivityProvider();
 
@@ -78,11 +79,23 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
 
             event.preventDefault();
             const { data } = await ActivityService.createActivity(payload); 
-            console.log(data);
-            closeForm();
+            if (data) {
+                closeForm();
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Activity recorded',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+            
         } catch (error) {
-            console.log({error});
-            alert(error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Something wrong',
+                text: error.message,
+            });
         }
     }
 
