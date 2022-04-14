@@ -32,8 +32,24 @@
   background: #fff;
 }
 
+.search-box {
+  display: flex;
+}
+
+.search-box p {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.search-box select {
+  font-size: 16px;
+}
+
 @media screen and (max-width: 512px) {
   .record-results {
     width: 100%;;
+  }
+  .search-box p {
+    display: none;
   }
 }
