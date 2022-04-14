@@ -10,6 +10,11 @@ class UserProvider extends HttpRequest {
         this.setHeader(getAuthToken())
         return this.get(`/users/${id}`);
     }
+
+    updateUserById (id, payload) {
+        this.setHeader(getAuthToken())
+        return this.patch(`/users/${id}`, payload);
+    }
 }
 
 export default UserProvider;
