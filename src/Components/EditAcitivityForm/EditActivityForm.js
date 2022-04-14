@@ -1,6 +1,5 @@
 import './EditActivityForm.css';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import dayjs from 'dayjs';
 import ActivityProvider from '../../Resources/ActivityProvider';
 

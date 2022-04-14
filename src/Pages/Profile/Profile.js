@@ -24,7 +24,7 @@ const Profile = () => {
                 </div>
                 <div className="profile-container">
                     <div className="profile-image">
-                        <img src="./Images/avatar.png" alt="Profile image" className="profile-picture" />
+                        <img src="./Images/avatar.png" alt="Profile" className="profile-picture" />
                         <div className="edit-image">
                             <img src="./Images/pencil.png" alt="pencil icon" className="pencil-icon"/>
                         </div>

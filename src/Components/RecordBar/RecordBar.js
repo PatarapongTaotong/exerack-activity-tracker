@@ -39,7 +39,7 @@ const RecordBar = () => {
             </div>
             <div className="avatar-container">
                 <div className="avatar">
-                    <img src="./Images/avatar.png" alt="Profile image" className="avatar-image" />
+                    <img src="./Images/avatar.png" alt="Profile" className="avatar-image" />
                 </div>
             </div>
             <div className="home-main-section">
