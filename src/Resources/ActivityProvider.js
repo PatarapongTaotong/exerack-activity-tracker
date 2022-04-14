@@ -7,9 +7,9 @@ class ActivityProvider extends HttpRequest {
         return this.post('/activities', payload);
     }
 
-    getActivitiesByUserId (uid) {
+    getActivitiesByUserId (uid, limit) {
         this.setHeader(getAuthToken())
-        return this.get(`/activities/${uid}/user-id?limit=20`);
+        return this.get(`/activities/${uid}/user-id?limit=${limit}`);
     }
 
     editActivityByUserId (id, payload) {

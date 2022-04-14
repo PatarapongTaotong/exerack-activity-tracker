@@ -8,16 +8,31 @@
   font-size: 40px;
 }
 
-.record-information {
-  width: 70%;
+.record-date {
+  width: 33%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.record-date p {
+  font-size: 20px;
+  font-size: 0.83rem;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.record-information {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
 }
 
 .record-information h3 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
   margin-bottom: 0.22rem;
 }
@@ -30,7 +45,7 @@
 }
 
 .record-icon {
-  width: 30%;
+  width: 33%;
   display: flex;
 }
 
@@ -60,4 +75,8 @@
 
 .hover-elevate:active {
   box-shadow: none;
+}
+
+@media screen and (max-width: 768px) {
+  
 }

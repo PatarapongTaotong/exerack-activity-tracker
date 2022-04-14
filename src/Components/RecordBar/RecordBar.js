@@ -5,6 +5,7 @@ import Button from '../Button/Button';
 import { getAuthDecode } from '../../Assets/js/Authentication';
 import ActivityProvider from '../../Resources/ActivityProvider';
 import EditActivityForm from '../EditAcitivityForm/EditActivityForm';
+import Swal from 'sweetalert2';
 
 const ActivityService = new ActivityProvider();
 
@@ -16,10 +17,14 @@ const RecordBar = () => {
     const fetchActivities = async () => {
         try {
             const { id } = getAuthDecode();
-            const { data } = await ActivityService.getActivitiesByUserId(id);
+            const { data } = await ActivityService.getActivitiesByUserId(id, 20);
             setRecordData(data);
         } catch (error) {
-            console.log(error)
+            Swal.fire({
+                icon: 'error',
+                title: 'Something wrong',
+                text: error.message,
+            });
         }    
     }
 
@@ -44,7 +49,7 @@ const RecordBar = () => {
             </div>
             <div className="home-main-section">
                 <RecordResults recordData={recordData} onClickRecord={onClickRecord} />
-                <Button link='/history'>View all records</Button>
+                <Button link='/history'>View more records</Button>
             </div>
             {showEdit && <EditActivityForm editData={editData} 
                                             closeForm={() => setShowEdit(false)} 

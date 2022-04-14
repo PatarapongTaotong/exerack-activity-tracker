@@ -2,6 +2,7 @@ import './EditActivityForm.css';
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import ActivityProvider from '../../Resources/ActivityProvider';
+import Swal from 'sweetalert2';
 
 const ActivityService = new ActivityProvider();
 
@@ -82,14 +83,25 @@ const EditActivityForm = ({closeForm, activityType, icon, editData, onEdit}) => 
             }
 
             event.preventDefault();
-            const data = await ActivityService.editActivityByUserId(editData.id, payload);
+            const { data } = await ActivityService.editActivityByUserId(editData.id, payload);
             if (data) {
                 onEdit();
                 closeForm();
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Your data is changed',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
             
         } catch (error) {
-            console.log({error});
+            Swal.fire({
+                icon: 'error',
+                title: 'Something wrong',
+                text: error.message,
+            });
         }
     }
 
@@ -123,7 +135,7 @@ const EditActivityForm = ({closeForm, activityType, icon, editData, onEdit}) => 
                 </div>
                 
                 <button id="submit" type="submit" className="btn">Keep Change</button>
-                <button type="button" className="btn delete">Delete</button>
+                <button type="button" className="delete">Delete</button>
                 <button type="button" className="btn cancel" onClick={closeForm}>Close</button>
 
             </form>
