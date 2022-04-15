@@ -125,7 +125,7 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
                 <div>
                     <label htmlFor="ac-duration" className="label">Duration</label>
                     <input id="ac-duration" name="ac-duration" type="number" placeholder="Enter time in minutes" value={time} onChange={onChangeTime} required />
-                    {isTimeOk && <div className="error-text">Duration should be positive integer</div>}
+                    {isTimeOk && <div className="error-text">Duration should be positive number</div>}
                 </div>
                 
                 <button id="submit" type="submit" className="btn">Record</button>

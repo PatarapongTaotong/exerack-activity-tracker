@@ -115,7 +115,7 @@ const Signup = () => {
                         placeholder='Confirm your password' 
                         value={confirmPassword} 
                         onChange={e => setConfirmPassword(e.target.value)} />
-                    <button className='signup-btn' onClick={ isInvalid ? '' : handleClick }>Sign Up</button>    
+                    <button className='signup-btn' onClick={ isInvalid ? null : handleClick }>Sign Up</button>    
                 </RegisterForm>
             </div>
             {showLoader && <Loader />}

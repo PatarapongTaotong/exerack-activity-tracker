@@ -1,24 +1,29 @@
 import './RecordResults.css';
 import RecordList from '../RecordList/RecordList';
 
-const RecordResults = ({recordData, onClickRecord}) => {
+const RecordResults = ({recordData, onClickRecord, onSelectType}) => {
+
+    const selectedType = (event) => {
+        onSelectType(event.target.value);
+    }
+
     return (
         <div className="record-results">
             <div className="record-results-header">
                 <div className="record-title">Records</div>
                 <div className="search-box">
                     <p>Sort by</p>
-                    <select id="cars" name="cars">
-                        <option value="show all">Show all</option>
-                        <option value="run">Run</option>
-                        <option value="bicycle">Bicycle</option>
-                        <option value="ride">Ride</option>
-                        <option value="swim">Swim</option>
-                        <option value="walk">Walk</option>
-                        <option value="hike">Hike</option>
-                        <option value="weight-training">Weight-training</option>
-                        <option value="boxing">Boxing</option>
-                        <option value="yoga">Yoga</option>
+                    <select id="type-select" name="type-select" onChange={selectedType}>
+                        <option value="Show all">Show all</option>
+                        <option value="Run">Run</option>
+                        <option value="Bicycle">Bicycle</option>
+                        <option value="Ride">Ride</option>
+                        <option value="Swim">Swim</option>
+                        <option value="Walk">Walk</option>
+                        <option value="Hike">Hike</option>
+                        <option value="Weight-training">Weight-training</option>
+                        <option value="Boxing">Boxing</option>
+                        <option value="Yoga">Yoga</option>
                     </select>
                 </div> 
             </div>

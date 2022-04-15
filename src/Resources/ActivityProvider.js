@@ -7,9 +7,22 @@ class ActivityProvider extends HttpRequest {
         return this.post('/activities', payload);
     }
 
-    getActivitiesByUserId (uid, limit) {
+    getActivitiesByUserId (uid, query) {
         this.setHeader(getAuthToken())
-        return this.get(`/activities/${uid}/user-id?limit=${limit}`);
+        let paginate = [
+            `limit=${query.limit}`,
+            `sort=${query.sort}`,
+            `sortOrder=${query.sortOrder}`,
+            `page=${query.page}`
+        ].join('&')
+
+        if (query?.types?.length) {
+            query.types.forEach((type) => {
+                paginate += `&types[]=${type}`
+            })
+        }
+
+        return this.get(`/activities/${uid}/user-id?${paginate}`);
     }
 
     editActivityByUserId (id, payload) {

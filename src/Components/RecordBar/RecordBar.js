@@ -1,7 +1,6 @@
 import './RecordBar.css';
 import { useEffect, useState } from 'react';
 import RecordResults from '../RecordResults/RecordResults';
-import Button from '../Button/Button';
 import { getAuthDecode } from '../../Assets/js/Authentication';
 import ActivityProvider from '../../Resources/ActivityProvider';
 import UserProvider from '../../Resources/UserProvider';
@@ -16,12 +15,46 @@ const RecordBar = () => {
     const [showEdit, setShowEdit] = useState(false);
     const [editData, setEditData] = useState({});
     const [name, setName] = useState('');
+    const [typeSelected, setTypeSelected] = useState([]);
+    const [nextPage, setNextPage] = useState(null);
+    const [prevPage, setPrevPage] = useState(null);
+    let [currentPage, setCurrentPage] = useState(1);
+    let [totalPages, setTotalPages] = useState(null);
+    let [startRecordsInfo, setStartRecordsInfo] = useState(null);
+    let [endRecordsInfo, setEndRecordsInfo] = useState(null);
+    const [recordsInfo, setRecordsInfo] = useState(null);
 
     const fetchActivities = async () => {
         try {
             const { id } = getAuthDecode();
-            const { data } = await ActivityService.getActivitiesByUserId(id, 20);
-            setRecordData(data);
+            const query = {
+                limit: 20,
+                sort: 'date',
+                sortOrder: 'desc',
+                page: currentPage,
+                types: typeSelected
+            }
+
+            const { data } = await ActivityService.getActivitiesByUserId(id, query);
+            setRecordData(data.docs);
+            setNextPage(data.hasNextPage);
+            setPrevPage(data.hasPrevPage);
+            setTotalPages(data.totalPages);
+
+            if (data.totalDocs === 0) {
+                setRecordsInfo('no record')
+            }
+
+            if (data.totalDocs === 1) {
+                setRecordsInfo('1 record')
+            }
+
+            if (data.totalDocs > 1) {
+                setStartRecordsInfo(((data.page - 1) * 20) + 1);
+                setEndRecordsInfo(((data.page - 1) * 20) + data.docs.length);
+                setRecordsInfo(`${startRecordsInfo}-${endRecordsInfo} of records`);
+            }
+
         } catch (error) {
             Swal.fire({
                 icon: 'error',
@@ -46,13 +79,38 @@ const RecordBar = () => {
     }
 
     useEffect(() => {
-        fetchActivities();
         getUsername();
     }, [])
+
+    useEffect(() => {
+        fetchActivities();
+    }, [typeSelected, currentPage, endRecordsInfo])
 
     const onClickRecord = (record) => {
         setEditData(record);
         setShowEdit(true);
+    }
+
+    const onSelectType = (type) => {
+       if (type !== 'Show all') {
+           setTypeSelected([type]);
+       }
+
+       if (type === 'Show all') {
+            setTypeSelected([]);
+       }
+    }
+
+    const previous = () => {
+        if (currentPage > 1) {
+            setCurrentPage(--currentPage);
+        }
+    }
+
+    const next = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(++currentPage);
+        }
     }
 
     return (
@@ -66,8 +124,18 @@ const RecordBar = () => {
                 </div>
             </div>
             <div className="home-main-section">
-                <RecordResults recordData={recordData} onClickRecord={onClickRecord} />
-                <Button link='/history'>View more records</Button>
+                <RecordResults recordData={recordData} onClickRecord={onClickRecord} onSelectType={onSelectType} />
+                <div className="page">
+                    <div className={prevPage ? 'previous' : 'disabled-prev'} onClick={previous}>
+                        <i className="fa-solid fa-square-caret-left"></i>
+                    </div>
+                    <div className="page-information">
+                        {recordsInfo}
+                    </div>
+                    <div className={nextPage ? 'next' : 'disabled-next'} onClick={next}>
+                        <i className="fa-solid fa-square-caret-right"></i>
+                    </div>
+                </div>
             </div>
             {showEdit && <EditActivityForm editData={editData} 
                                             closeForm={() => setShowEdit(false)} 

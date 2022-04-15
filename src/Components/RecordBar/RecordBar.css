@@ -29,3 +29,71 @@
       width: 200px;
   }
 }
+
+.page {
+  display: flex;
+  width: 60%;
+}
+
+@media screen and (max-width: 512px) {
+  .page {
+    width: 100%;
+  }
+}
+
+.disabled-prev {
+  width: 20%;
+  font-size: 32px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: rgb(216, 216, 216)
+}
+
+.disabled-next {
+  width: 20%;
+  font-size: 32px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: rgb(216, 216, 216)
+}
+
+.previous {
+  width: 20%;
+  font-size: 32px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.previous:hover {
+  cursor: pointer;
+}
+
+.previous:active {
+  opacity: 0.5;
+}
+
+.page-information {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.next {
+  width: 20%;
+  font-size: 32px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.next:hover {
+  cursor: pointer;
+}
+
+.next:active {
+  opacity: 0.5;
+}
