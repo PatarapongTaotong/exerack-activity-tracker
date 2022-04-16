@@ -16,6 +16,7 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
     const [isTimeOk, setIsTimeOk] = useState(false);
     const [startTimer, setStartTimer] = useState(false);
     const [timerText, setTimerText] = useState('');
+    const [intervalID, setIntervalID] = useState(null);
 
 
     const onChangeName = (e) => {
@@ -66,7 +67,6 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
         }
     }, [time])
 
-    let intervalID = null;
     let S1 = 0;
     let S2 = 0;
     let M = 0;
@@ -81,7 +81,6 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
                 M++;
             }
         }
-        console.log(S1)
         setTime(`${M}.${S2}${S1}`);
     } 
 
@@ -96,17 +95,18 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
     useEffect (() => {
         if (startTimer) {
             setTimerText('Stop Timer');
-            intervalID = setInterval(countTime, 1000);
+            setIntervalID(setInterval(countTime, 1000)) ;
         }
 
         if (!startTimer) {
             setTimerText('Start Timer');
-            clearInterval(intervalID);
+            setIntervalID(clearInterval(intervalID))
         }
 
     }, [startTimer])
 
     const onSubmit = async (event) => {
+        setIntervalID(clearInterval(intervalID))
         try {
             const { id } = getAuthDecode();
 
@@ -178,7 +178,7 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
                 <button type="button" className="btn cancel" 
                         onClick={() => {
                             closeForm();
-                            stop();
+                            setIntervalID(clearInterval(intervalID))
                         }}>Close</button>
 
             </form>

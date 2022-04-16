@@ -23,6 +23,7 @@ const RecordBar = () => {
     let [startRecordsInfo, setStartRecordsInfo] = useState(null);
     let [endRecordsInfo, setEndRecordsInfo] = useState(null);
     const [recordsInfo, setRecordsInfo] = useState(null);
+    const [profileImage, setProfileImage] = useState('./Images/avatar.png');
 
     const fetchActivities = async () => {
         try {
@@ -68,6 +69,7 @@ const RecordBar = () => {
             const { id } = getAuthDecode();
             const { data } = await UserService.getUserById(id);
             setName(data.username);
+            setProfileImage(data.imgUrl);
         } catch (error) {
             Swal.fire({
                 icon: 'error',
@@ -123,7 +125,7 @@ const RecordBar = () => {
             </div>
             <div className="avatar-container">
                 <div className="avatar">
-                    <img src="./Images/avatar.png" alt="Profile" className="avatar-image" />
+                    <img src={profileImage} alt="Profile" className="avatar" />
                 </div>
             </div>
             <div className="home-main-section">

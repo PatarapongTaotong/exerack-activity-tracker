@@ -9,12 +9,15 @@ import { useNavigate } from 'react-router-dom';
 import { getAuthDecode } from '../../Assets/js/Authentication';
 import UserProvider from '../../Resources/UserProvider';
 import Swal from 'sweetalert2';
+import S3BucketProvider from '../../Resources/S3BucketProvider';
 
 const UserService = new UserProvider();
+const S3BucketService = new S3BucketProvider();
 
 const Profile = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [profileImage, setProfileImage] = useState('./Images/avatar.png');
 
     const getUser = async () => {
         try {
@@ -22,6 +25,7 @@ const Profile = () => {
             const { data } = await UserService.getUserById(id);
             setName(data.username);
             setEmail(data.email);
+            setProfileImage(data.imgUrl);
         } catch (error) {
             Swal.fire({
                 icon: 'error',
@@ -67,6 +71,61 @@ const Profile = () => {
         navigate('/', { replace: true });
     }
 
+    const uploadImage = () => {
+        const imgUploadBox = document.getElementById('imgupload');
+        imgUploadBox.click();
+    }
+
+    const imageUploaded = async (event) => {       
+        try {
+            event.preventDefault();
+            const image = event.target.files[0]; 
+            const fileType = image.type.split('/')[1];
+
+            // get url
+            const { data: url } = await S3BucketService.getUploadUrl(fileType);
+
+            // post image to bucket
+            await fetch(url, {
+                method: 'PUT',
+                headers: {
+                    "Content-type": "multipart/form-data"
+                },
+                body: image
+            })
+
+            // get image url from server
+            const imgUrl = url.split('?')[0];
+
+            const result = await Swal.fire({
+                title: 'Do you want to change your profile image?',
+                showDenyButton: true,
+                confirmButtonText: 'Change',
+                denyButtonText: `Don't change`,
+            })
+
+            if (result.isConfirmed) {
+                setProfileImage(imgUrl);
+
+                const { id } = getAuthDecode();
+                await UserService.updateUserById(id, { imgUrl });
+            }  
+
+            if (result.isDenied) {
+                const imgUploadBox = document.getElementById('imgupload');
+                imgUploadBox.value = null;
+            }
+          
+
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Something wrong',
+                text: error.message,
+            });
+        }
+    }
+
     return (
         <>
             <NavBar />
@@ -77,10 +136,15 @@ const Profile = () => {
                 </div>
                 <div className="profile-container">
                     <div className="profile-image">
-                        <img src="./Images/avatar.png" alt="Profile" className="profile-picture" />
-                        <div className="edit-image">
+                        <img alt="Profile" className="profile-picture" src={profileImage} />
+                        <div className="edit-image" onClick={uploadImage}>
                             <img src="./Images/pencil.png" alt="pencil icon" className="pencil-icon"/>
                         </div>
+                        <input  type="file" 
+                                id="imgupload" 
+                                style={{display: 'none'}} 
+                                accept="image/*"
+                                onChange={imageUploaded} />
                     </div> 
                     <div className="profile-data">
                         <label>Name: </label>
