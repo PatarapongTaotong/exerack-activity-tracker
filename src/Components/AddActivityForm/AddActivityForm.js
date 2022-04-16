@@ -14,6 +14,9 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [isTimeOk, setIsTimeOk] = useState(false);
+    const [startTimer, setStartTimer] = useState(false);
+    const [timerText, setTimerText] = useState('');
+
 
     const onChangeName = (e) => {
         setActivityName(e.target.value);       
@@ -54,7 +57,7 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
     useEffect (() => {
         if (time === '') {
             setIsTimeOk(false);
-        } else if (time < 1) {
+        } else if (time <= 0) {
             setIsTimeOk(true);
             document.getElementById("submit").disabled = true;
         } else {
@@ -62,6 +65,46 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
             document.getElementById("submit").disabled = false;
         }
     }, [time])
+
+    let intervalID = null;
+    let S1 = 0;
+    let S2 = 0;
+    let M = 0;
+
+    const countTime = () => {
+        S1++;
+        if (S1 === 10) {
+            S1 = 0;
+            S2++;
+            if (S2 === 6) {
+                S2 = 0;
+                M++;
+            }
+        }
+        console.log(S1)
+        setTime(`${M}.${S2}${S1}`);
+    } 
+
+    const start = () => {
+        setStartTimer(true);
+    }
+
+    const stop = () => {
+        setStartTimer(false);
+    }
+
+    useEffect (() => {
+        if (startTimer) {
+            setTimerText('Stop Timer');
+            intervalID = setInterval(countTime, 1000);
+        }
+
+        if (!startTimer) {
+            setTimerText('Start Timer');
+            clearInterval(intervalID);
+        }
+
+    }, [startTimer])
 
     const onSubmit = async (event) => {
         try {
@@ -74,7 +117,7 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
                 activityName,
                 activityDescription,
                 date,
-                duration: time
+                duration: +time
             }
 
             event.preventDefault();
@@ -129,7 +172,14 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
                 </div>
                 
                 <button id="submit" type="submit" className="btn">Record</button>
-                <button type="button" className="btn cancel" onClick={closeForm}>Close</button>
+                <button type="button" 
+                        className={startTimer ? "stop" : "start"}
+                        onClick={startTimer ? stop : start}>{timerText}</button>
+                <button type="button" className="btn cancel" 
+                        onClick={() => {
+                            closeForm();
+                            stop();
+                        }}>Close</button>
 
             </form>
         </div>

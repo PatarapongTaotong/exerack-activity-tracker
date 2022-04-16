@@ -61,7 +61,7 @@ const EditActivityForm = ({closeForm, activityType, icon, editData, onEdit}) => 
     useEffect (() => {
         if (time === '') {
             setIsTimeOk(false);
-        } else if (time < 1) {
+        } else if (time <= 0) {
             setIsTimeOk(true);
             document.getElementById("submit").disabled = true;
         } else {

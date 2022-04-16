@@ -51,8 +51,7 @@ const RecordBar = () => {
 
             if (data.totalDocs > 1) {
                 setStartRecordsInfo(((data.page - 1) * 20) + 1);
-                setEndRecordsInfo(((data.page - 1) * 20) + data.docs.length);
-                setRecordsInfo(`${startRecordsInfo}-${endRecordsInfo} of records`);
+                setEndRecordsInfo(((data.page - 1) * 20) + data.docs.length);  
             }
 
         } catch (error) {
@@ -85,6 +84,10 @@ const RecordBar = () => {
     useEffect(() => {
         fetchActivities();
     }, [typeSelected, currentPage, endRecordsInfo])
+
+    useEffect(() => {
+        setRecordsInfo(`${startRecordsInfo}-${endRecordsInfo} of records`);
+    }, [endRecordsInfo])
 
     const onClickRecord = (record) => {
         setEditData(record);

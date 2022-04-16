@@ -6,7 +6,7 @@
 
 .record-results {
   width: 60%;
-  height: 800px;
+  height: 736px;
   overflow-y: scroll;
   padding: 0.88rem;
   background-color: #f1f1f1;
@@ -14,6 +14,7 @@
 }
 
 .record-results-header {
+  width: 60%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,9 +48,12 @@
 
 @media screen and (max-width: 512px) {
   .record-results {
-    width: 100%;;
+    width: 100%;
   }
   .search-box p {
     display: none;
+  }
+  .record-results-header {
+    width: 100%;
   }
 }

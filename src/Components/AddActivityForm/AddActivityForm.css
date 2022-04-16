@@ -74,6 +74,37 @@
   flex-direction: column;
 }
 
+.form-container .start {
+  background-color: rgb(25, 25, 24);
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.form-container .start:hover {
+  opacity: 1;
+}
+
+.form-container .stop {
+  background-color: rgb(175, 175, 175);
+  color: black;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.form-container .stop:hover {
+  opacity: 1;
+}
+
+
 .label {
   font-weight: 600;
 }
