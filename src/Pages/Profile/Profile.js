@@ -10,6 +10,7 @@ import { getAuthDecode } from '../../Assets/js/Authentication';
 import UserProvider from '../../Resources/UserProvider';
 import Swal from 'sweetalert2';
 import S3BucketProvider from '../../Resources/S3BucketProvider';
+import Loader from '../../Components/Loader/Loader';
 
 const UserService = new UserProvider();
 const S3BucketService = new S3BucketProvider();
@@ -18,6 +19,7 @@ const Profile = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [profileImage, setProfileImage] = useState('./Images/avatar.png');
+    const [showLoader, setShowLoader] = useState(false);
 
     const getUser = async () => {
         try {
@@ -37,6 +39,10 @@ const Profile = () => {
 
     useEffect(() => {
         getUser();
+        setShowLoader(true);
+        setTimeout (() => {
+            setShowLoader(false);
+        }, 1000)
     }, [])
 
     const handleChange = async (e) => {
@@ -159,6 +165,7 @@ const Profile = () => {
             </div>
             <QuickLink />
             <Footer>© EXERACK 2022</Footer>
+            {showLoader && <Loader />}
         </>
     );
 }
