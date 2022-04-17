@@ -46,6 +46,7 @@ const Profile = () => {
     }, [])
 
     const handleChange = async (e) => {
+        e.preventDefault();
         setName(e.target.value);
     }
 
