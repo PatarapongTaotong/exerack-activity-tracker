@@ -85,10 +85,12 @@ const RecordBar = () => {
 
     useEffect(() => {
         fetchActivities();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [typeSelected, currentPage, endRecordsInfo])
 
     useEffect(() => {
         setRecordsInfo(`${startRecordsInfo}-${endRecordsInfo} of records`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [endRecordsInfo])
 
     const onClickRecord = (record) => {

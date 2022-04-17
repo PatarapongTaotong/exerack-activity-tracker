@@ -103,6 +103,7 @@ const AddActivityForm = ({closeForm, activityType, icon}) => {
             setIntervalID(clearInterval(intervalID))
         }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [startTimer])
 
     const onSubmit = async (event) => {
