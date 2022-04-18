@@ -6,6 +6,7 @@ import ActivityProvider from '../../Resources/ActivityProvider';
 import UserProvider from '../../Resources/UserProvider';
 import EditActivityForm from '../EditAcitivityForm/EditActivityForm';
 import Swal from 'sweetalert2';
+import Loader from '../../Components/Loader/Loader';
 
 const ActivityService = new ActivityProvider();
 const UserService = new UserProvider();
@@ -24,9 +25,11 @@ const RecordBar = () => {
     let [endRecordsInfo, setEndRecordsInfo] = useState(null);
     const [recordsInfo, setRecordsInfo] = useState(null);
     const [profileImage, setProfileImage] = useState('./Images/avatar.png');
+    const [showLoader, setShowLoader] = useState(false);
 
     const fetchActivities = async () => {
         try {
+            setShowLoader(true);
             const { id } = getAuthDecode();
             const query = {
                 limit: 20,
@@ -53,6 +56,10 @@ const RecordBar = () => {
             if (data.totalDocs > 1) {
                 setStartRecordsInfo(((data.page - 1) * 20) + 1);
                 setEndRecordsInfo(((data.page - 1) * 20) + data.docs.length);  
+            }
+
+            if (data) {
+                setShowLoader(false);
             }
 
         } catch (error) {
@@ -149,6 +156,7 @@ const RecordBar = () => {
                                             activityType={editData.activityType} 
                                             icon={editData.icon}
                                             onEdit={() => fetchActivities()} />}
+            {showLoader && <Loader />}
         </div>
     );
 }

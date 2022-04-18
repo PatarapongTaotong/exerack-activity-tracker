@@ -23,11 +23,19 @@ const Profile = () => {
 
     const getUser = async () => {
         try {
+            setShowLoader(true);
+
             const { id } = getAuthDecode();
             const { data } = await UserService.getUserById(id);
+
             setName(data.username);
             setEmail(data.email);
             setProfileImage(data.imgUrl);
+
+            if (data) {
+                setShowLoader(false);
+            }
+
         } catch (error) {
             Swal.fire({
                 icon: 'error',
@@ -39,10 +47,6 @@ const Profile = () => {
 
     useEffect(() => {
         getUser();
-        setShowLoader(true);
-        setTimeout (() => {
-            setShowLoader(false);
-        }, 1000)
     }, [])
 
     const handleChange = async (e) => {
@@ -50,25 +54,36 @@ const Profile = () => {
         setName(e.target.value);
     }
 
+    const changeName = async () => {
+        try {
+            const { id } = getAuthDecode();
+
+            const payload = {
+                username: name
+            }
+
+            await UserService.updateUserById(id, payload);
+
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Something wrong',
+                text: error.message,
+            });
+        }
+    }
+
     useEffect(() => {
-        (async () => {
-            try {
-                const { id } = getAuthDecode();
-    
-                const payload = {
-                    username: name
-                }
-    
-                await UserService.updateUserById(id, payload);
-    
-            } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Something wrong',
-                    text: error.message,
-                });
-            } 
-        })();    
+        if (name === '') {
+            setTimeout (() => {
+                changeName();
+            }, 3000)
+        }
+        
+        if (name !== '') {
+            changeName();
+        }
+
     }, [name])
 
     const navigate = useNavigate();

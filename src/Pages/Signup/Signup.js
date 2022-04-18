@@ -16,6 +16,13 @@ const Signup = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showLoader, setShowLoader] = useState(false);
 
+    useEffect (() => {
+        setShowLoader(true);
+        setTimeout (() => {
+            setShowLoader(false);
+        }, 1000)
+    }, [])
+
     const navigate = useNavigate();
 
     const validateEmail = (email) => {
@@ -78,11 +85,10 @@ const Signup = () => {
                 })
             }
 
-            setShowLoader(true);
             setTimeout (() => {
-                setShowLoader(false);
                 navigate('/', { replace: true });
             }, 1000);
+
         } catch (error) {
             Swal.fire({
                 icon: 'error',
