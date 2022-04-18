@@ -54,36 +54,49 @@ const Profile = () => {
         setName(e.target.value);
     }
 
-    const changeName = async () => {
-        try {
-            const { id } = getAuthDecode();
-
-            const payload = {
-                username: name
-            }
-
-            await UserService.updateUserById(id, payload);
-
-        } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Something wrong',
-                text: error.message,
-            });
-        }
-    }
-
     useEffect(() => {
         if (name === '') {
             setTimeout (() => {
-                // eslint-disable-next-line react-hooks/exhaustive-deps
-                changeName();
+                (async() => {
+                    try {
+                        const { id } = getAuthDecode();
+            
+                        const payload = {
+                            username: name
+                        }
+            
+                        await UserService.updateUserById(id, payload);
+            
+                    } catch (error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Something wrong',
+                            text: error.message,
+                        });
+                    }
+                })();
             }, 3000)
         }
         
         if (name !== '') {
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-            changeName();
+            (async() => {
+                try {
+                    const { id } = getAuthDecode();
+        
+                    const payload = {
+                        username: name
+                    }
+        
+                    await UserService.updateUserById(id, payload);
+        
+                } catch (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Something wrong',
+                        text: error.message,
+                    });
+                }
+            })();
         }
 
     }, [name])
