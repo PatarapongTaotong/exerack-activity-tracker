@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import NavBar from '../../Components/NavBar/NavBar';
 import MainBoard from '../../Components/MainBoard/MainBoard';
 import RecordBar from '../../Components/RecordBar/RecordBar';
