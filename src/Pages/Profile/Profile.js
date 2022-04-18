@@ -76,11 +76,13 @@ const Profile = () => {
     useEffect(() => {
         if (name === '') {
             setTimeout (() => {
+                // eslint-disable-next-line react-hooks/exhaustive-deps
                 changeName();
             }, 3000)
         }
         
         if (name !== '') {
+            // eslint-disable-next-line react-hooks/exhaustive-deps
             changeName();
         }
 
