@@ -16,7 +16,7 @@ const UserService = new UserProvider();
 const S3BucketService = new S3BucketProvider();
 
 const Profile = () => {
-    const [name, setName] = useState('');
+    const [name, setName] = useState(null);
     const [email, setEmail] = useState('');
     const [profileImage, setProfileImage] = useState('./Images/avatar.png');
     const [showLoader, setShowLoader] = useState(false);
@@ -55,30 +55,9 @@ const Profile = () => {
     }
 
     useEffect(() => {
-        if (name === '') {
-            setTimeout (() => {
-                (async() => {
-                    try {
-                        const { id } = getAuthDecode();
-            
-                        const payload = {
-                            username: name
-                        }
-            
-                        await UserService.updateUserById(id, payload);
-            
-                    } catch (error) {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Something wrong',
-                            text: error.message,
-                        });
-                    }
-                })();
-            }, 3000)
-        }
-        
-        if (name !== '') {
+        if (name === null) {
+            return;
+        } else {
             (async() => {
                 try {
                     const { id } = getAuthDecode();
@@ -98,7 +77,6 @@ const Profile = () => {
                 }
             })();
         }
-
     }, [name])
 
     const navigate = useNavigate();
