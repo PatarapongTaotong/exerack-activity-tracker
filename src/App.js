@@ -7,7 +7,7 @@ import ProfilePage from './Pages/Profile/Profile';
 
 function App() {
   return (
-      <BrowserRouter basename="/*">
+      <BrowserRouter basename="/">
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />
