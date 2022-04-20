@@ -75,8 +75,13 @@ const RecordBar = () => {
         try {
             const { id } = getAuthDecode();
             const { data } = await UserService.getUserById(id);
+            
             setName(data.username);
-            setProfileImage(data.imgUrl);
+
+            if (data.imgUrl) {
+                setProfileImage(data.imgUrl);
+            }
+            
         } catch (error) {
             Swal.fire({
                 icon: 'error',

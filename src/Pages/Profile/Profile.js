@@ -30,7 +30,10 @@ const Profile = () => {
 
             setName(data.username);
             setEmail(data.email);
-            setProfileImage(data.imgUrl);
+
+            if (data.imgUrl) {
+                setProfileImage(data.imgUrl);
+            }
 
             if (data) {
                 setShowLoader(false);
