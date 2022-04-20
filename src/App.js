@@ -7,13 +7,13 @@ import ProfilePage from './Pages/Profile/Profile';
 
 function App() {
   return (
-      <BrowserRouter basename="/">
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="signup" element={<SignupPage />} />
-          <Route path="home" element={<HomePage />} />
-          <Route path="activities" element={<ActivitiesPage />} />
-          <Route path="profile" element={<ProfilePage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/activities" element={<ActivitiesPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
   );
